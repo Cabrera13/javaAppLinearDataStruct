@@ -27,14 +27,15 @@ public class Planta {
         cotxes = new LinkedList<>();
         total += capacitat-numCotxes;
         }
-    public int getAndSet (String matricula) {
-        if (numCotxes <= capacitat) {
-           this.numCotxes += 1;
-           this.cotxes.add(matricula);
+    public int afegirCotxePlanta (String matricula) {
+        if (numCotxes < capacitat-1) {
+           this.Ocupat = false;
         }
         else {
             this.Ocupat= true;
         }
+        this.cotxes.add(matricula);
+        this.numCotxes += 1;
         return this.numCotxes;
     }
     

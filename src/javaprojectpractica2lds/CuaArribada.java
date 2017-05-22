@@ -6,16 +6,21 @@
 package javaprojectpractica2lds;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 
 /**
  *
  * @author josep
  */
+
 public class CuaArribada  {
-    /* Deque<string> pis = LinkedList<>(...); */
-    
-    public CuaArribada() {
-        /**/
+    Deque<String> cuaArribada;
+        
+    public CuaArribada () {
+        cuaArribada = new LinkedList<>();
     }
-    
+    public boolean buida () {
+       return cuaArribada.isEmpty();
+    }
 }

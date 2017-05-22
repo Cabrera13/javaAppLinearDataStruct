@@ -17,7 +17,7 @@ public class Edifici {
     ArrayList<Planta> llistatPlanta;
     private Deque<String> fileraAux;
     String numCotxesPlanta;
-    
+    int p = 0;
     Integer placesLliures;
     
     public Edifici (Integer numPlantes, Integer capacitat) throws Exception {
@@ -27,6 +27,14 @@ public class Edifici {
             Planta planta = new Planta(capacitat);
             llistatPlanta.add(i, planta);
         }
+    }
+    
+    public int AfegirCotxeE(String mat){
+        while(llistatPlanta.get(p).Ocupat){
+            p++;
+        }
+        llistatPlanta.get(p).afegirCotxePlanta(mat);
+        return p;
     }
     
     public String toString () {

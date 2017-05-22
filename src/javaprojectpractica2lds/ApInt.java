@@ -23,29 +23,26 @@ public class ApInt {
    
     Edifici edificiGeneral;
     Integer numCotxesTotal = 0;
-    private Deque<String> cua = new LinkedList<>();
+    //private Deque<String> cua = new LinkedList<>();
+    private CuaArribada cua;
     private Deque<String> cotxesEntrada = new LinkedList<>();
 
     public ApInt (int numPlantes, int capacitat) throws Exception {
         this.numPlantes = numPlantes;
         this.capacitat = capacitat;
         edificiGeneral = new Edifici(this.numPlantes, this.capacitat);
-        
+        cua = new CuaArribada();
     }
     public void arribaCotxe (String matricula) {
-        cua.add(matricula);
+        cua.cuaArribada.add(matricula);
     }
     
     public void procesarEntrada() throws Exception {
-       for (int i = 0; i <= numPlantes;) {
-           for (int x = 0; x < capacitat; x++) {
-               if (!cua.isEmpty()) {
-               edificiGeneral.llistatPlanta.get(i).getAndSet(cua.getLast());
-               cua.removeLast();
-               }
-           }
-           i++;
-       }
+        while(!cua.buida()){
+            String m = cua.cuaArribada.removeLast();
+            Integer p = edificiGeneral.AfegirCotxeE(m);
+            
+        }
     }
     
     public int actualitzarPlacesLliures () {
@@ -59,8 +56,9 @@ public class ApInt {
     public String toString () {
         String string;
         //string = ""+ edificiGeneral.llistatPlanta.get(i).total;
-        return ("Cua: " + (cua) + "\n" +
+        return ("Cua d'arribada: " + (cua) + "\n" +
                 "Places lliures: " + (actualitzarPlacesLliures()) + "\n" +
-                "" + edificiGeneral.toString());
+                edificiGeneral.toString() +
+                "Directori: ");
         }
     }
