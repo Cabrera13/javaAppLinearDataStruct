@@ -20,34 +20,44 @@ public class ApInt {
     private final int numPlantes;
     private final int capacitat; 
     Edifici edificiGeneral;
-    
+    Integer numCotxesTotal;
     private Deque<String> cua = new LinkedList<>();
-    
+    private Deque<String> cotxesEntrada = new LinkedList<>();
+
     public ApInt (int numPlantes, int capacitat) throws Exception {
         this.numPlantes = numPlantes;
         this.capacitat = capacitat;
         edificiGeneral = new Edifici(this.numPlantes, this.capacitat);
     }
     public void arribaCotxe (String matricula) {
-        cua.addLast(matricula);
+        cua.add(matricula);
     }
     
     public void procesarEntrada() throws Exception {
-       for (int i = 0; i < cua.size()-1; i++) {
-           edificiGeneral.llistatPlanta.get(i).numCotxes += 1;
+       for (int i = 0; i <= numPlantes;) {
+           for (int x = 0; x <= capacitat; x++) {
+               if (!cua.isEmpty()) {
+               edificiGeneral.llistatPlanta.get(i).getAndSet(cua.getLast());
+               cua.removeLast();
+               }
+           }
+           i++;
        }
     }
+    
     public int actualitzarPlacesLliures () {
         Integer totalPlacesLliures = 0;
         for (int i = 0; i < edificiGeneral.llistatPlanta.size(); i++) {
             totalPlacesLliures += edificiGeneral.llistatPlanta.get(i).total;
+            edificiGeneral.llistatPlanta.get(i).cotxes.addLast(matricula);
         }
         return totalPlacesLliures;
     }
+    
     public String toString () {
         String string;
         //string = ""+ edificiGeneral.llistatPlanta.get(i).total;
-        return ("Places lliures " + (actualitzarPlacesLliures()) + "\n" +
+        return ("Places lliures: " + (actualitzarPlacesLliures()) + "\n" +
                 "" + edificiGeneral.toString());
+        }
     }
-}
