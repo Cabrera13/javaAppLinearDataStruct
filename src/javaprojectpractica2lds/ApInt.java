@@ -17,10 +17,12 @@ import java.util.LinkedList;
 
 public class ApInt {
     private String matricula;   
+    private Integer placesLliures; 
     private final int numPlantes;
     private final int capacitat; 
+   
     Edifici edificiGeneral;
-    Integer numCotxesTotal;
+    Integer numCotxesTotal = 0;
     private Deque<String> cua = new LinkedList<>();
     private Deque<String> cotxesEntrada = new LinkedList<>();
 
@@ -28,6 +30,7 @@ public class ApInt {
         this.numPlantes = numPlantes;
         this.capacitat = capacitat;
         edificiGeneral = new Edifici(this.numPlantes, this.capacitat);
+        
     }
     public void arribaCotxe (String matricula) {
         cua.add(matricula);
@@ -35,7 +38,7 @@ public class ApInt {
     
     public void procesarEntrada() throws Exception {
        for (int i = 0; i <= numPlantes;) {
-           for (int x = 0; x <= capacitat; x++) {
+           for (int x = 0; x < capacitat; x++) {
                if (!cua.isEmpty()) {
                edificiGeneral.llistatPlanta.get(i).getAndSet(cua.getLast());
                cua.removeLast();
@@ -46,18 +49,18 @@ public class ApInt {
     }
     
     public int actualitzarPlacesLliures () {
-        Integer totalPlacesLliures = 0;
-        for (int i = 0; i < edificiGeneral.llistatPlanta.size(); i++) {
-            totalPlacesLliures += edificiGeneral.llistatPlanta.get(i).total;
-            edificiGeneral.llistatPlanta.get(i).cotxes.addLast(matricula);
+        for (int i = 0; i < numPlantes; i++) {
+            numCotxesTotal += edificiGeneral.llistatPlanta.get(i).cotxes.size();
+            placesLliures = (numPlantes*capacitat) - numCotxesTotal;
         }
-        return totalPlacesLliures;
+        return placesLliures;
     }
     
     public String toString () {
         String string;
         //string = ""+ edificiGeneral.llistatPlanta.get(i).total;
-        return ("Places lliures: " + (actualitzarPlacesLliures()) + "\n" +
+        return ("Cua: " + (cua) + "\n" +
+                "Places lliures: " + (actualitzarPlacesLliures()) + "\n" +
                 "" + edificiGeneral.toString());
         }
     }

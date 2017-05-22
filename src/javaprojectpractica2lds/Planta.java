@@ -41,6 +41,5 @@ public class Planta {
     public String toString() {
         return "Places lliures: " + total;
     }
-    
     }
 

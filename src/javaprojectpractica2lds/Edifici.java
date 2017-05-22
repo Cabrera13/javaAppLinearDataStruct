@@ -14,12 +14,15 @@ import java.util.LinkedList;
  * @author josep
  */
 public class Edifici {            
-    ArrayList<Planta> llistatPlanta = new ArrayList();
-    private Deque<String> fileraAux = new LinkedList<>();
+    ArrayList<Planta> llistatPlanta;
+    private Deque<String> fileraAux;
+    String numCotxesPlanta;
     
     Integer placesLliures;
     
     public Edifici (Integer numPlantes, Integer capacitat) throws Exception {
+        llistatPlanta = new ArrayList();
+        fileraAux = new LinkedList<>();
         for (int i=0; i < numPlantes; i++) {
             Planta planta = new Planta(capacitat);
             llistatPlanta.add(i, planta);
@@ -29,7 +32,8 @@ public class Edifici {
     public String toString () {
         String commit = "";
         for (int i=0; i < llistatPlanta.size(); i++) {
-            commit +=  "Planta "+i+": \n";
+            numCotxesPlanta = llistatPlanta.get(i).cotxes.toString();
+            commit +=  "Planta "+i+": "+ numCotxesPlanta +"\n";
          }
         return commit;
     }
