@@ -20,13 +20,15 @@ public class finish {
     ai.arribaCotxe("mat3");
     ai.arribaCotxe("mat4");
     ai.arribaCotxe("mat5");
+    System.out.println(ai);
 
-    
+
  // treu els cotxes de la cua i els guarda en
     // posa el cotxe de matrícula mat1 a la cua
     
     ai.procesarEntrada(); // treu els cotxes de la cua i els guarda en
     System.out.println(ai);
-    
+    ai.treureCotxe("mat3");
+    System.out.println(ai);
     }           
 }

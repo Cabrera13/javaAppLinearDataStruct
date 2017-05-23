@@ -16,9 +16,12 @@ public class Directori {
     String matricula;
     Integer planta;
     
-    private Deque<String> directoris = new LinkedList<>();
-
     public Directori(String matricula, Integer planta) {
-        
+        this.matricula = matricula;
+        this.planta = planta;
+    }
+    
+    public String toString () {
+        return matricula + " " + planta;
     }
 }

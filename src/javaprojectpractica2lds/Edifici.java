@@ -14,11 +14,16 @@ import java.util.LinkedList;
  * @author josep
  */
 public class Edifici {            
-    ArrayList<Planta> llistatPlanta;
+    private ArrayList<Planta> llistatPlanta;
     private Deque<String> fileraAux;
-    String numCotxesPlanta;
-    int p = 0;
-    Integer placesLliures;
+    private String numCotxesPlanta;
+    private int p = 0;
+    private Integer placesLliures;
+    private String m;
+    private String matriculaTreureCotxe;
+    private String j;
+    private String o;
+    private Integer plantaTreureCotxe;
     
     public Edifici (Integer numPlantes, Integer capacitat) throws Exception {
         llistatPlanta = new ArrayList();
@@ -28,13 +33,28 @@ public class Edifici {
             llistatPlanta.add(i, planta);
         }
     }
-    
+    public void treureCotxe (String mat, Integer Planta) throws Exception {
+        while (llistatPlanta.get(Planta).cotxes.getLast() != mat){
+            j = llistatPlanta.get(Planta).cotxes.removeLast();
+            fileraAux.add(j);
+        }
+        if (llistatPlanta.get(Planta).cotxes.getLast() == mat) {
+            j = llistatPlanta.get(Planta).cotxes.removeLast();
+        }
+        while (!fileraAux.isEmpty()) {
+            o = fileraAux.removeLast();
+            llistatPlanta.get(Planta).cotxes.addLast(o);
+        }
+    }
     public int AfegirCotxeE(String mat){
         while(llistatPlanta.get(p).Ocupat){
             p++;
         }
         llistatPlanta.get(p).afegirCotxePlanta(mat);
         return p;
+    }
+    public void guardarCotxeAuxiliar (String mat) {
+        fileraAux.add(mat);
     }
     
     public String toString () {

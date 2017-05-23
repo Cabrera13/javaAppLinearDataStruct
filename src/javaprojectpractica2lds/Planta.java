@@ -15,12 +15,13 @@ import java.util.LinkedList;
  */
 public class Planta {
     Deque<String> cotxes;
-    Integer capacitat;
-    Integer Lliures;
+    private Integer capacitat;
+    private Integer Lliures;
     Boolean Ocupat = false;
-    Integer total = 0;
-    Integer numCotxes = 0;
-    
+    private Integer total = 0;
+    private Integer numCotxes = 0;
+    private String m;
+
     public Planta (Integer capacitat) throws Exception {
         this.capacitat = capacitat;
         this.Ocupat = Ocupat;
@@ -40,7 +41,7 @@ public class Planta {
     }
     
     public String toString() {
-        return "Places lliures: " + total;
-    }
+            return "Places lliures: " + total;
+        }
     }
 
