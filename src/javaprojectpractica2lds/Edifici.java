@@ -25,8 +25,9 @@ public class Edifici {
         for (int i=0; i < numPlantes; i++) {
             Planta planta = new Planta(capacitat);
             llistatPlanta.add(i, planta);
-        }         
+        }
     }
+    
     public void treureCotxe (String mat, Integer Planta) throws Exception {
         while (llistatPlanta.get(Planta).diferentFinal(mat)){
             j = llistatPlanta.get(Planta).borrarUltim();
