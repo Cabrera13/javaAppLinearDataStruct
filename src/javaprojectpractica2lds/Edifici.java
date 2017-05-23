@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// Josep Sánchez & Miquel Bellet
+
 package javaprojectpractica2lds;
 
 import java.util.ArrayList;
@@ -14,16 +11,13 @@ import java.util.LinkedList;
  * @author josep
  */
 public class Edifici {            
-    private ArrayList<Planta> llistatPlanta;
-    private Deque<String> fileraAux;
+    private final ArrayList<Planta> llistatPlanta;
+    private final Deque<String> fileraAux;
     private String numCotxesPlanta;
     private int p = 0;
-    private Integer placesLliures;
     private String m;
-    private String matriculaTreureCotxe;
     private String j;
     private String o;
-    private Integer plantaTreureCotxe;
     
     public Edifici (Integer numPlantes, Integer capacitat) throws Exception {
         llistatPlanta = new ArrayList();
@@ -31,28 +25,31 @@ public class Edifici {
         for (int i=0; i < numPlantes; i++) {
             Planta planta = new Planta(capacitat);
             llistatPlanta.add(i, planta);
-        }
+        }         
     }
     public void treureCotxe (String mat, Integer Planta) throws Exception {
-        while (llistatPlanta.get(Planta).cotxes.getLast() != mat){
-            j = llistatPlanta.get(Planta).cotxes.removeLast();
+        while (llistatPlanta.get(Planta).diferentFinal(mat)){
+            j = llistatPlanta.get(Planta).borrarUltim();
             fileraAux.add(j);
         }
-        if (llistatPlanta.get(Planta).cotxes.getLast() == mat) {
-            j = llistatPlanta.get(Planta).cotxes.removeLast();
+        if (llistatPlanta.get(Planta).igualFinal(mat)) {
+            j = llistatPlanta.get(Planta).borrarUltim();
         }
         while (!fileraAux.isEmpty()) {
             o = fileraAux.removeLast();
-            llistatPlanta.get(Planta).cotxes.addLast(o);
+            llistatPlanta.get(Planta).afegitUltim(o);
         }
     }
+    
     public int AfegirCotxeE(String mat){
-        while(llistatPlanta.get(p).Ocupat){
+        p = 0;
+        while(llistatPlanta.get(p).comprovarOcupat()){
             p++;
         }
         llistatPlanta.get(p).afegirCotxePlanta(mat);
         return p;
     }
+    
     public void guardarCotxeAuxiliar (String mat) {
         fileraAux.add(mat);
     }
@@ -60,7 +57,7 @@ public class Edifici {
     public String toString () {
         String commit = "";
         for (int i=0; i < llistatPlanta.size(); i++) {
-            numCotxesPlanta = llistatPlanta.get(i).cotxes.toString();
+            numCotxesPlanta = llistatPlanta.get(i).cotxesString();
             commit +=  "Planta "+i+": "+ numCotxesPlanta +"\n";
          }
         return commit;

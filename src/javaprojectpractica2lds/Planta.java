@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// Josep Sánchez & Miquel Bellet
+
 package javaprojectpractica2lds;
 
 import java.util.ArrayList;
@@ -14,13 +11,11 @@ import java.util.LinkedList;
  * @author Josep
  */
 public class Planta {
-    Deque<String> cotxes;
+    private Deque<String> cotxes;
     private Integer capacitat;
-    private Integer Lliures;
-    Boolean Ocupat = false;
+    private Boolean Ocupat = false;
     private Integer total = 0;
     private Integer numCotxes = 0;
-    private String m;
 
     public Planta (Integer capacitat) throws Exception {
         this.capacitat = capacitat;
@@ -40,6 +35,30 @@ public class Planta {
         return this.numCotxes;
     }
     
+    public boolean diferentFinal (String m) {
+        return cotxes.getLast() != m;
+
+    }
+    public boolean igualFinal (String m) {
+        return cotxes.getLast () == m;
+    }
+    public void setOcupat () {
+        this.Ocupat = false;
+    }
+    public String borrarUltim () {
+        this.Ocupat = false;
+        return cotxes.removeLast();
+    }
+    public void afegitUltim (String m) {
+        
+        cotxes.add(m);
+    }
+    public boolean comprovarOcupat () {
+        return Ocupat;
+    }
+    public String cotxesString () {
+        return cotxes.toString();
+    }
     public String toString() {
             return "Places lliures: " + total;
         }

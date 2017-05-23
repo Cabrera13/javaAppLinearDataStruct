@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// Josep Sánchez & Miquel Bellet
+
 package javaprojectpractica2lds;
 
 /**
@@ -14,21 +11,28 @@ public class finish {
     ApInt ai=new ApInt(4,3);
     // es creen totes les ED necessàries
     // 4 plantes, 3 cotxes per planta
-    ai.arribaCotxe("mat1");
     // posa el cotxe de matrícula mat1 a la cua
+
+    ai.arribaCotxe("mat1");
     ai.arribaCotxe("mat2");
     ai.arribaCotxe("mat3");
     ai.arribaCotxe("mat4");
     ai.arribaCotxe("mat5");
+
+
+    ai.procesarEntrada();
     System.out.println(ai);
 
-
- // treu els cotxes de la cua i els guarda en
-    // posa el cotxe de matrícula mat1 a la cua
+    // treu els cotxes de la cua i els guarda en l'edifici
     
-    ai.procesarEntrada(); // treu els cotxes de la cua i els guarda en
+    ai.treureCotxe("mat2");
     System.out.println(ai);
-    ai.treureCotxe("mat3");
+    
+    ai.arribaCotxe("mat6");
+    ai.arribaCotxe("mat7");
+    ai.arribaCotxe("mat8");
+
+    ai.procesarEntrada();
     System.out.println(ai);
     }           
 }
